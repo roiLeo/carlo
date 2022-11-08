@@ -1,4 +1,4 @@
-import type {Result} from './support'
+import type {Result, Option} from './support'
 
 export type MultiAddress = MultiAddress_Id | MultiAddress_Index | MultiAddress_Raw | MultiAddress_Address32 | MultiAddress_Address20
 
@@ -72,19 +72,6 @@ export interface VersionedMultiAssets_V0 {
 export interface VersionedMultiAssets_V1 {
   __kind: 'V1'
   value: V1MultiAsset[]
-}
-
-export interface FundInfo {
-  depositor: Uint8Array
-  verifier: (MultiSigner | undefined)
-  deposit: bigint
-  raised: bigint
-  end: number
-  cap: bigint
-  lastContribution: LastContribution
-  firstPeriod: number
-  lastPeriod: number
-  trieIndex: number
 }
 
 export type V0MultiLocation = V0MultiLocation_Null | V0MultiLocation_X1 | V0MultiLocation_X2 | V0MultiLocation_X3 | V0MultiLocation_X4 | V0MultiLocation_X5 | V0MultiLocation_X6 | V0MultiLocation_X7 | V0MultiLocation_X8
@@ -203,39 +190,6 @@ export interface V0MultiAsset_ConcreteNonFungible {
 export interface V1MultiAsset {
   id: V1AssetId
   fun: V1Fungibility
-}
-
-export type MultiSigner = MultiSigner_Ed25519 | MultiSigner_Sr25519 | MultiSigner_Ecdsa
-
-export interface MultiSigner_Ed25519 {
-  __kind: 'Ed25519'
-  value: Uint8Array
-}
-
-export interface MultiSigner_Sr25519 {
-  __kind: 'Sr25519'
-  value: Uint8Array
-}
-
-export interface MultiSigner_Ecdsa {
-  __kind: 'Ecdsa'
-  value: Uint8Array
-}
-
-export type LastContribution = LastContribution_Never | LastContribution_PreEnding | LastContribution_Ending
-
-export interface LastContribution_Never {
-  __kind: 'Never'
-}
-
-export interface LastContribution_PreEnding {
-  __kind: 'PreEnding'
-  value: number
-}
-
-export interface LastContribution_Ending {
-  __kind: 'Ending'
-  value: number
 }
 
 export type V0Junction = V0Junction_Parent | V0Junction_Parachain | V0Junction_AccountId32 | V0Junction_AccountIndex64 | V0Junction_AccountKey20 | V0Junction_PalletInstance | V0Junction_GeneralIndex | V0Junction_GeneralKey | V0Junction_OnlyChild | V0Junction_Plurality

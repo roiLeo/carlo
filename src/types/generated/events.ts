@@ -1,5 +1,5 @@
 import assert from 'assert'
-import {Chain, ChainContext, EventContext, Event, Result} from './support'
+import {Chain, ChainContext, EventContext, Event, Result, Option} from './support'
 
 export class CrowdloanContributedEvent {
   private readonly _chain: Chain
@@ -210,6 +210,27 @@ export class StakingBondedEvent {
     assert(this.isV1051)
     return this._chain.decodeEvent(this.event)
   }
+
+  /**
+   * An account has bonded this amount. \[stash, amount\]
+   * 
+   * NOTE: This event is only emitted when funds are bonded via a dispatchable. Notably,
+   * it will not be emitted for staking rewards when they are added to stake.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.Bonded') === '9623d141834cd425342a1ff7a2b2265acd552799bcd6a0df67eb08a661e2215d'
+  }
+
+  /**
+   * An account has bonded this amount. \[stash, amount\]
+   * 
+   * NOTE: This event is only emitted when funds are bonded via a dispatchable. Notably,
+   * it will not be emitted for staking rewards when they are added to stake.
+   */
+  get asV9300(): {stash: Uint8Array, amount: bigint} {
+    assert(this.isV9300)
+    return this._chain.decodeEvent(this.event)
+  }
 }
 
 export class StakingEraPaidEvent {
@@ -243,6 +264,23 @@ export class StakingEraPaidEvent {
     assert(this.isV9090)
     return this._chain.decodeEvent(this.event)
   }
+
+  /**
+   * The era payout has been set; the first balance is the validator-payout; the second is
+   * the remainder from the maximum amount of reward.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.EraPaid') === '940fb56de13a3a5bb887ff8bc3518465d73e48a2e4418a6edb32a9d338f0b44a'
+  }
+
+  /**
+   * The era payout has been set; the first balance is the validator-payout; the second is
+   * the remainder from the maximum amount of reward.
+   */
+  get asV9300(): {eraIndex: number, validatorPayout: bigint, remainder: bigint} {
+    assert(this.isV9300)
+    return this._chain.decodeEvent(this.event)
+  }
 }
 
 export class StakingPayoutStartedEvent {
@@ -270,6 +308,21 @@ export class StakingPayoutStartedEvent {
    */
   get asV9090(): [number, Uint8Array] {
     assert(this.isV9090)
+    return this._chain.decodeEvent(this.event)
+  }
+
+  /**
+   * The stakers' rewards are getting paid.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.PayoutStarted') === 'd95599bb0ef0f714befa738223f11c2fc8127ccc863fcf601c59c2c90393c3cf'
+  }
+
+  /**
+   * The stakers' rewards are getting paid.
+   */
+  get asV9300(): {eraIndex: number, validatorStash: Uint8Array} {
+    assert(this.isV9300)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -347,6 +400,21 @@ export class StakingRewardedEvent {
     assert(this.isV9090)
     return this._chain.decodeEvent(this.event)
   }
+
+  /**
+   * The nominator has been rewarded by this amount.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.Rewarded') === '9623d141834cd425342a1ff7a2b2265acd552799bcd6a0df67eb08a661e2215d'
+  }
+
+  /**
+   * The nominator has been rewarded by this amount.
+   */
+  get asV9300(): {stash: Uint8Array, amount: bigint} {
+    assert(this.isV9300)
+    return this._chain.decodeEvent(this.event)
+  }
 }
 
 export class StakingSlashEvent {
@@ -407,6 +475,21 @@ export class StakingSlashedEvent {
     assert(this.isV9090)
     return this._chain.decodeEvent(this.event)
   }
+
+  /**
+   * One staker (and potentially its nominators) has been slashed by the given amount.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.Slashed') === '8043a273ae232adf290e1fbbd88711bdf078eb5beb2a947de455999b434e7896'
+  }
+
+  /**
+   * One staker (and potentially its nominators) has been slashed by the given amount.
+   */
+  get asV9300(): {staker: Uint8Array, amount: bigint} {
+    assert(this.isV9300)
+    return this._chain.decodeEvent(this.event)
+  }
 }
 
 export class StakingUnbondedEvent {
@@ -434,6 +517,21 @@ export class StakingUnbondedEvent {
    */
   get asV1051(): [Uint8Array, bigint] {
     assert(this.isV1051)
+    return this._chain.decodeEvent(this.event)
+  }
+
+  /**
+   * An account has unbonded this amount.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.Unbonded') === '9623d141834cd425342a1ff7a2b2265acd552799bcd6a0df67eb08a661e2215d'
+  }
+
+  /**
+   * An account has unbonded this amount.
+   */
+  get asV9300(): {stash: Uint8Array, amount: bigint} {
+    assert(this.isV9300)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -465,6 +563,23 @@ export class StakingWithdrawnEvent {
    */
   get asV1051(): [Uint8Array, bigint] {
     assert(this.isV1051)
+    return this._chain.decodeEvent(this.event)
+  }
+
+  /**
+   * An account has called `withdraw_unbonded` and removed unbonding chunks worth `Balance`
+   * from the unlocking queue.
+   */
+  get isV9300(): boolean {
+    return this._chain.getEventHash('Staking.Withdrawn') === '9623d141834cd425342a1ff7a2b2265acd552799bcd6a0df67eb08a661e2215d'
+  }
+
+  /**
+   * An account has called `withdraw_unbonded` and removed unbonding chunks worth `Balance`
+   * from the unlocking queue.
+   */
+  get asV9300(): {stash: Uint8Array, amount: bigint} {
+    assert(this.isV9300)
     return this._chain.decodeEvent(this.event)
   }
 }

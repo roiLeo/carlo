@@ -1,5 +1,5 @@
 import assert from 'assert'
-import {Chain, ChainContext, CallContext, Call, Result} from './support'
+import {Chain, ChainContext, CallContext, Call, Result, Option} from './support'
 import * as v1020 from './v1020'
 import * as v1050 from './v1050'
 import * as v2028 from './v2028'
@@ -722,7 +722,7 @@ export class StakingBondCall {
    *  # </weight>
    */
   get isV1020(): boolean {
-    return this._chain.getCallHash('Staking.bond') === '3cace3eeefbd92edd61c1cab1250874814a606c95414451a83315e0301be4cff'
+    return this._chain.getCallHash('Staking.bond') === '77a89e4c12792f968efd83b6a9d740690602a445b35884d8ae655bdc1f3480f7'
   }
 
   /**
@@ -765,7 +765,7 @@ export class StakingBondCall {
    *  # </weight>
    */
   get isV1050(): boolean {
-    return this._chain.getCallHash('Staking.bond') === '20db399e4963916b83c2636d8d5e414b30d79d868ca62d05181259e5d0c02e7e'
+    return this._chain.getCallHash('Staking.bond') === 'bb948688bed1a70b8b0ff155f0a4555536a3bab1f35f7432580a502b100ae8e4'
   }
 
   /**
@@ -815,7 +815,7 @@ export class StakingBondCall {
    *  # </weight>
    */
   get isV2028(): boolean {
-    return this._chain.getCallHash('Staking.bond') === '6c5de9285e9c4ba450dfa1ed6ebededa6083cc2b06cee317e92c1f89751818c6'
+    return this._chain.getCallHash('Staking.bond') === '336aace4bca839311d4cecb842a12241ffdc1cb7c84e81b2b6ab6a2b818777f0'
   }
 
   /**
@@ -1515,7 +1515,7 @@ export class StakingSetPayeeCall {
    *  # </weight>
    */
   get isV1020(): boolean {
-    return this._chain.getCallHash('Staking.set_payee') === 'e3e8a6a5ee204c56e926f714a3d580d47fe315d3b243872e40cc8959db768aa8'
+    return this._chain.getCallHash('Staking.set_payee') === 'e882138b8d0371da862d058ac00f1def3ca0f71ab72eda3fbfb7d75b5fa16515'
   }
 
   /**
@@ -1533,51 +1533,6 @@ export class StakingSetPayeeCall {
    */
   get asV1020(): {payee: v1020.RewardDestination} {
     assert(this.isV1020)
-    return this._chain.decodeCall(this.call)
-  }
-
-  /**
-   * (Re-)set the payment target for a controller.
-   * 
-   * Effects will be felt at the beginning of the next era.
-   * 
-   * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-   * 
-   * # <weight>
-   * - Independent of the arguments. Insignificant complexity.
-   * - Contains a limited number of reads.
-   * - Writes are limited to the `origin` account key.
-   * ---------
-   * - Weight: O(1)
-   * - DB Weight:
-   *     - Read: Ledger
-   *     - Write: Payee
-   * # </weight>
-   */
-  get isV9111(): boolean {
-    return this._chain.getCallHash('Staking.set_payee') === 'e882138b8d0371da862d058ac00f1def3ca0f71ab72eda3fbfb7d75b5fa16515'
-  }
-
-  /**
-   * (Re-)set the payment target for a controller.
-   * 
-   * Effects will be felt at the beginning of the next era.
-   * 
-   * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-   * 
-   * # <weight>
-   * - Independent of the arguments. Insignificant complexity.
-   * - Contains a limited number of reads.
-   * - Writes are limited to the `origin` account key.
-   * ---------
-   * - Weight: O(1)
-   * - DB Weight:
-   *     - Read: Ledger
-   *     - Write: Payee
-   * # </weight>
-   */
-  get asV9111(): {payee: v9111.RewardDestination} {
-    assert(this.isV9111)
     return this._chain.decodeCall(this.call)
   }
 }
@@ -1808,7 +1763,7 @@ export class XcmPalletReserveTransferAssetsCall {
    *    `ReserveAssetDeposit { assets, effects: [ BuyExecution{..}, DepositAsset{..} ] }`.
    */
   get isV9030(): boolean {
-    return this._chain.getCallHash('XcmPallet.reserve_transfer_assets') === '774ab6f7f10a0a74a84b5705dc885bc7aeca80d91bde94a0e0faabe4d06ecdf1'
+    return this._chain.getCallHash('XcmPallet.reserve_transfer_assets') === '3c069703413ed53ed30061e5da3bc55ab8fa9032fc014ba18afc7afe32930ebd'
   }
 
   /**
@@ -1847,7 +1802,7 @@ export class XcmPalletReserveTransferAssetsCall {
    *    `ReserveAssetDeposited { assets, effects: [ BuyExecution{..}, DepositAsset{..} ] }`.
    */
   get isV9100(): boolean {
-    return this._chain.getCallHash('XcmPallet.reserve_transfer_assets') === '1626a7b3bf7048e3565b3a4ce4400cb7f4a23aa1a7a30bb99a107cf0b4d75ffa'
+    return this._chain.getCallHash('XcmPallet.reserve_transfer_assets') === 'c4558a18f0400069c14aaa3575bad0bb84b99ac94f206e8ab02890276f174ff4'
   }
 
   /**
@@ -1940,7 +1895,7 @@ export class XcmPalletTeleportAssetsCall {
    *    `Teleport { assets, effects: [ BuyExecution{..}, DepositAsset{..} ] }`.
    */
   get isV9010(): boolean {
-    return this._chain.getCallHash('XcmPallet.teleport_assets') === '774ab6f7f10a0a74a84b5705dc885bc7aeca80d91bde94a0e0faabe4d06ecdf1'
+    return this._chain.getCallHash('XcmPallet.teleport_assets') === '3c069703413ed53ed30061e5da3bc55ab8fa9032fc014ba18afc7afe32930ebd'
   }
 
   /**
@@ -1977,7 +1932,7 @@ export class XcmPalletTeleportAssetsCall {
    *    `Teleport { assets, effects: [ BuyExecution{..}, DepositAsset{..} ] }`.
    */
   get isV9100(): boolean {
-    return this._chain.getCallHash('XcmPallet.teleport_assets') === '1626a7b3bf7048e3565b3a4ce4400cb7f4a23aa1a7a30bb99a107cf0b4d75ffa'
+    return this._chain.getCallHash('XcmPallet.teleport_assets') === 'c4558a18f0400069c14aaa3575bad0bb84b99ac94f206e8ab02890276f174ff4'
   }
 
   /**

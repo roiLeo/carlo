@@ -1,4 +1,4 @@
-import type {Result} from './support'
+import type {Result, Option} from './support'
 
 export type LookupSource = LookupSource_Id | LookupSource_Index | LookupSource_Raw | LookupSource_Address32 | LookupSource_Address20
 
@@ -31,17 +31,14 @@ export type RewardDestination = RewardDestination_Staked | RewardDestination_Sta
 
 export interface RewardDestination_Staked {
   __kind: 'Staked'
-  value: null
 }
 
 export interface RewardDestination_Stash {
   __kind: 'Stash'
-  value: null
 }
 
 export interface RewardDestination_Controller {
   __kind: 'Controller'
-  value: null
 }
 
 export interface RewardDestination_Account {
@@ -51,7 +48,6 @@ export interface RewardDestination_Account {
 
 export interface RewardDestination_None {
   __kind: 'None'
-  value: null
 }
 
 export interface ValidatorPrefs {

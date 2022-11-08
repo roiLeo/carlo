@@ -1,4 +1,4 @@
-import type {Result} from './support'
+import type {Result, Option} from './support'
 
 export type VersionedMultiLocation = VersionedMultiLocation_V0 | VersionedMultiLocation_V1 | VersionedMultiLocation_V2
 
@@ -38,7 +38,6 @@ export type MultiLocationV0 = MultiLocationV0_Here | MultiLocationV0_X1 | MultiL
 
 export interface MultiLocationV0_Here {
   __kind: 'Here'
-  value: null
 }
 
 export interface MultiLocationV0_X1 {
@@ -95,22 +94,18 @@ export type MultiAssetV0 = MultiAssetV0_None | MultiAssetV0_All | MultiAssetV0_A
 
 export interface MultiAssetV0_None {
   __kind: 'None'
-  value: null
 }
 
 export interface MultiAssetV0_All {
   __kind: 'All'
-  value: null
 }
 
 export interface MultiAssetV0_AllFungible {
   __kind: 'AllFungible'
-  value: null
 }
 
 export interface MultiAssetV0_AllNonFungible {
   __kind: 'AllNonFungible'
-  value: null
 }
 
 export interface MultiAssetV0_AllAbstractFungible {
@@ -166,7 +161,6 @@ export type JunctionV0 = JunctionV0_Parent | JunctionV0_Parachain | JunctionV0_A
 
 export interface JunctionV0_Parent {
   __kind: 'Parent'
-  value: null
 }
 
 export interface JunctionV0_Parachain {
@@ -209,7 +203,6 @@ export interface JunctionV0_GeneralKey {
 
 export interface JunctionV0_OnlyChild {
   __kind: 'OnlyChild'
-  value: null
 }
 
 export interface JunctionV0_Plurality {
@@ -222,7 +215,6 @@ export type JunctionsV1 = JunctionsV1_Here | JunctionsV1_X1 | JunctionsV1_X2 | J
 
 export interface JunctionsV1_Here {
   __kind: 'Here'
-  value: null
 }
 
 export interface JunctionsV1_X1 {
@@ -269,7 +261,6 @@ export type AssetInstanceV0 = AssetInstanceV0_Undefined | AssetInstanceV0_Index8
 
 export interface AssetInstanceV0_Undefined {
   __kind: 'Undefined'
-  value: null
 }
 
 export interface AssetInstanceV0_Index8 {
@@ -350,7 +341,6 @@ export type NetworkId = NetworkId_Any | NetworkId_Named | NetworkId_Polkadot | N
 
 export interface NetworkId_Any {
   __kind: 'Any'
-  value: null
 }
 
 export interface NetworkId_Named {
@@ -360,19 +350,16 @@ export interface NetworkId_Named {
 
 export interface NetworkId_Polkadot {
   __kind: 'Polkadot'
-  value: null
 }
 
 export interface NetworkId_Kusama {
   __kind: 'Kusama'
-  value: null
 }
 
 export type BodyId = BodyId_Unit | BodyId_Named | BodyId_Index | BodyId_Executive | BodyId_Technical | BodyId_Legislative | BodyId_Judicial
 
 export interface BodyId_Unit {
   __kind: 'Unit'
-  value: null
 }
 
 export interface BodyId_Named {
@@ -387,29 +374,24 @@ export interface BodyId_Index {
 
 export interface BodyId_Executive {
   __kind: 'Executive'
-  value: null
 }
 
 export interface BodyId_Technical {
   __kind: 'Technical'
-  value: null
 }
 
 export interface BodyId_Legislative {
   __kind: 'Legislative'
-  value: null
 }
 
 export interface BodyId_Judicial {
   __kind: 'Judicial'
-  value: null
 }
 
 export type BodyPart = BodyPart_Voice | BodyPart_Members | BodyPart_Fraction | BodyPart_AtLeastProportion | BodyPart_MoreThanProportion
 
 export interface BodyPart_Voice {
   __kind: 'Voice'
-  value: null
 }
 
 export interface BodyPart_Members {
@@ -477,7 +459,6 @@ export interface JunctionV1_GeneralKey {
 
 export interface JunctionV1_OnlyChild {
   __kind: 'OnlyChild'
-  value: null
 }
 
 export interface JunctionV1_Plurality {
@@ -495,7 +476,6 @@ export type AssetInstanceV1 = AssetInstanceV1_Undefined | AssetInstanceV1_Index 
 
 export interface AssetInstanceV1_Undefined {
   __kind: 'Undefined'
-  value: null
 }
 
 export interface AssetInstanceV1_Index {

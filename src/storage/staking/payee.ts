@@ -15,17 +15,10 @@ async function getStorageData(ctx: StorageContext, account: Uint8Array): Promise
     if (!storage.isExists) return undefined
 
     if (storage.isV1020) {
-        const { __kind, value } = await storage.getAsV1020(account)
-        return {
-            payee: __kind,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            account: value!,
-        }
-    } else if (storage.isV9111) {
-        const data = await storage.getAsV9111(account)
+        const data = await storage.getAsV1020(account)
         return {
             payee: data.__kind,
-            account: (data as v9111.RewardDestination_Account).value,
+            account: data.__kind === 'Account' ? data.value : undefined,
         }
     } else {
         throw new UnknownVersionError(storage.constructor.name)

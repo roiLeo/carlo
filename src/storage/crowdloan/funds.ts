@@ -22,13 +22,6 @@ async function getStorageData(ctx: StorageContext, paraId: number): Promise<Stor
             fundIndex: data.trieIndex,
             ...data,
         }
-    } else if (storage.isV9111) {
-        const data = await storage.getAsV9111(paraId)
-        if (!data) return undefined
-        return {
-            fundIndex: data.trieIndex,
-            ...data,
-        }
     } else if (storage.isV9180) {
         return storage.getAsV9180(paraId)
     } else {
